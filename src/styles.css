@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "assets/customcss/w3.css";
+@import url(//db.onlinewebfonts.com/c/30524f8503b0c2991c95160028b7069c?family=Mistral+ITC+Std+Light);
+
+
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-grids/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-dropdowns/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-calendars/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-angular-inputs/styles/material.css';
+
+.push {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.tile {
+  position: relative;
+  background: #ffffff;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  padding: 20px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+@media print {
+  .tile {
+    border: 1px solid #ddd;
+  }
+}
+
+.tile.small {
+  padding: 0;
+}
+
+.tile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -o-justify-content: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  color: #555;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+.tile-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: purple;
+  font-weight: bold;
+}
+.tile .overlay .l-text {
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+.tile .tile-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  width: 100%;
+}

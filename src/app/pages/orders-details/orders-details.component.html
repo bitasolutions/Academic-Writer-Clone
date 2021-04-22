@@ -1,0 +1,60 @@
+<div class="w3-container Orders" style="margin-left: -50px">
+  <div class="w3-row">
+    <nz-list nzBordered>
+      <div class="tile-title tit">
+        <h3>
+          Orders Details &nbsp;
+          <strong style="color: rgb(77, 12, 77)">([{{ ordernumber }}])</strong>
+        </h3>
+      </div>
+      <div [className]="classes.root">
+        <ly-paper>
+          <ly-list style="padding-left: 15px">
+            <button ly-list-item>
+              <span ly-line class="lytitle">Title:</span>
+              <span ly-line>{{ orderDetails.Title }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Subject Area:</span>
+              <span ly-line>{{ orderDetails.SubJectArea }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Document Type:</span>
+              <span ly-line>{{
+                orderDetails.TypeOfDocument
+              }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle"
+                >Due Date: ({{ orderDetails.Status }})</span
+              >
+              <span ly-line>{{ orderDetails.DueDate | date: "medium" }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Acedemic Level:</span>
+              <span ly-line>{{ orderDetails.AcademicLevel }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Pages:</span>
+              <span ly-line>{{ orderDetails.NumberOfWords }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Spacing:</span>
+              <span ly-line>{{ orderDetails.Spaces }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle"
+                >Cost: ({{ orderDetails.Paid }})</span
+              >
+              <span ly-line>{{ orderDetails.OrderCost }}</span>
+            </button>
+            <button ly-list-item>
+              <span ly-line class="lytitle">Order Details (Note):</span>
+              <span ly-line>{{ orderDetails.Note }}</span>
+            </button>
+          </ly-list>
+        </ly-paper>
+      </div>
+    </nz-list>
+  </div>
+</div>

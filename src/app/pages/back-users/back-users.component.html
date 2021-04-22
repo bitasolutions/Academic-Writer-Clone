@@ -1,0 +1,151 @@
+<div class="push tile">
+  <div class="w3-container">
+    <div class="w3-row-paddding">
+      <div class="w3-third">
+        <form
+          #order="ngForm"
+          spellcheck="false"
+          autocomplete="off"
+          (submit)="OnSubmit(order)"
+          novalidate
+        >
+          <input hidden nz-input name="id" [(ngModel)]="clientService.userData.id" #ID="ngModel"/>
+          <div class="w3-row">
+            <div>
+              <h3><i>Register New User.</i></h3>
+            </div>
+
+            <div class="w3-row-padding">
+              <div class="w3-half">
+                <label for="firstname"> <span>First Name:</span> </label>
+                <input
+                  nz-input
+                  name="firstName"
+                  [(ngModel)]="clientService.userData.firstName"
+                  #firstName="ngModel"
+                  required
+                />
+              </div>
+              <div class="w3-half">
+                <label for="lastname"> <span>Last Name:</span> </label>
+                <input
+                  nz-input
+                  name="lastName"
+                  [(ngModel)]="clientService.userData.lastName"
+                  #lastName="ngModel"
+                  required
+                />
+              </div>
+            </div>
+            <div class="w3-row-padding">
+              <div class="w3-half">
+                <label for="email"> <span>Email:</span> </label>
+                <input
+                  type="email"
+                  nz-input
+                  name="email"
+                  [(ngModel)]="clientService.userData.email"
+                  #email="ngModel"
+                  required
+                />
+              </div>
+              <div class="w3-half">
+                <label for="username"> <span>Username:</span> </label>
+                <input
+                  type="text"
+                  nz-input
+                  name="username"
+                  [(ngModel)]="clientService.userData.username"
+                  #username="ngModel"
+                  required
+                />
+
+              </div>
+              <div class="w3-half">
+                <label for="password"> <span>Choose Password:</span> </label>
+                <input
+                  type="password"
+                  nz-input
+                  name="password"
+                  [(ngModel)]="clientService.userData.password"
+                  #password="ngModel"
+                  required
+                />
+              </div>
+              <div class="w3-half">
+                <label for="confirmpassword"> <span>Re-Enter Password:</span> </label>
+                <input
+                  type="password"
+                  nz-input
+                  name="confirmPassword"
+                  [(ngModel)]="clientService.userData.confirmPassword"
+                  #confirmPassword="ngModel"
+
+                />
+              </div>
+              <div class="w3-half">
+                <label for="contact1"> <span>Contact Phone #1:</span> </label>
+                <input
+                  type="text"
+                  nz-input
+                  name="contact1"
+                  [(ngModel)]="clientService.userData.contact1"
+                  #contact1="ngModel"
+                />
+              </div>
+              <div class="w3-half">
+                <label for="contact2"> <span>Contact Phone #2:</span> </label>
+                <input type="text" nz-input name="contact2" [(ngModel)]="clientService.userData.contact2" #contact2="ngModel" />
+              </div>
+              <div class="w3-half">
+                <label for="role"> <span>User Role:</span> </label>
+                <select class="w3-select w3-border" name="role" [(ngModel)]="clientService.userData.role" #role="ngModel">
+                  <option value="0">Select...</option>
+                  <option value="Admin">Administrator</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Supervisor">Supervisor</option>
+                </select>
+              </div>
+              <div class="w3-half" style="margin-top: 15px;">
+                <p style="margin: 10px;"><button class="w3-btn w3-round w3-green w3-hover-purple">Save</button></p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="w3-twothird">
+        <nz-table #basicTable [nzData]="clientService.userList">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>...</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td style="display: none;">{{ data.id }}</td>
+              <td>{{ data.name }}</td>
+              <td>{{ data.username }}</td>
+              <td>{{ data.role }}</td>
+              <td>{{ data.email }}</td>
+              <td>
+                <a class="w3-left" (click)="Update(data.id)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+
+                <a class="w3-center" (click)="UpdatePassword(data.id)" style="margin-left: 25px;"
+                  ><i nz-icon nzType="key" nzTheme="outline"></i
+                ></a>
+
+                <a class="w3-right" (click)="RemoveUser(data.id)"
+                  ><i style="color: red;" nz-icon nzType="delete" nzTheme="outline"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>

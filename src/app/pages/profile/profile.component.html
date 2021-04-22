@@ -1,0 +1,127 @@
+<div class="w3-container">
+  <div class="w3-card-2">
+    <div class="profile-card">
+      <header class="w3-container">
+        <h1>User Profile</h1>
+      </header>
+
+      <div class="w3-container">
+        <form
+          #form="ngForm"
+          autocomplete="off"
+          spellcheck="false"
+          (submit)="SaveUpdates()"
+        >
+          <div class="SignUpForm">
+            <div class="w3-row">
+              <div class="w3-row-padding">
+                <div class="w3-half">
+                  <label for="firstname"> <span>First Name:</span> </label>
+                  <input
+                    nz-input
+                    name="firstName"
+                    [(ngModel)]="clientService.userData.firstName"
+                    #firstName="ngModel"
+                    [disabled]="IsEditing"
+                    required
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="lastname"> <span>Last Name:</span> </label>
+                  <input
+                    nz-input
+                    name="lastName"
+                    [(ngModel)]="clientService.userData.lastName"
+                    #lastName="ngModel"
+                    [disabled]="IsEditing"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="w3-row-padding">
+                <div class="w3-half">
+                  <label for="email"> <span>Email:</span> </label>
+                  <input
+                    type="email"
+                    nz-input
+                    name="email"
+                    [(ngModel)]="clientService.userData.email"
+                    #email="ngModel"
+                    [disabled]="IsEditing"
+                    required
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="username"> <span>Username:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="username"
+                    [(ngModel)]="clientService.userData.username"
+                    #username="ngModel"
+                    [disabled]="IsEditing"
+                    required
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="contact1"> <span>Contact Phone #1:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="contact1"
+                    [(ngModel)]="clientService.userData.contact1"
+                    #contact1="ngModel"
+                    [disabled]="IsEditing"
+                    required
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="contact2"> <span>Contact Phone #2:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="contact2"
+                    [(ngModel)]="clientService.userData.contact2"
+                    #contact2="ngModel"
+                    [disabled]="IsEditing"
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="country"> <span>Country:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="country"
+                    [(ngModel)]="clientService.userData.country"
+                    #country="ngModel"
+                    [disabled]="IsEditing"
+                  />
+                </div>
+                <div class="w3-half">
+                  <div style="margin-top: 25px">
+                    <p>
+                      <button
+                        type="submit"
+                        class="w3-btn w3-round w3-red w3-hover-purple"
+                        [disabled]="IsEditing"
+                      >
+                        Update
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <footer class="w3-container">
+        <div class="card-body">
+          <a class="card-link" (click)="OnStartEdit()">Edit</a>
+          <a href="#" class="card-link">Change Password</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>

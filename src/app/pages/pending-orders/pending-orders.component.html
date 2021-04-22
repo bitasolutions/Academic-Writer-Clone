@@ -1,0 +1,34 @@
+<div class="tile-title Orders"><h3>Pending Orders</h3></div>
+<div class="w3-container">
+  <div class="summary">
+    <label>Pending Orders: {{ clientOrdersService.totalPending }}</label>
+  </div>
+  <div class="w3-row">
+    <nz-table #middleTable nzSize="middle" [nzData]="clientOrdersService.AllOrdersList">
+      <thead>
+        <tr>
+          <th style="width: 150px;">Order No</th>
+          <th style="width: 250px;">Order Date</th>
+          <th style="width: 250px;">DeadLine</th>
+          <th style="width: 200px;">Status</th>
+          <th style="width: 150px;">Cost</th>
+          <th>IsAssigned?</th>
+          <th>...</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of middleTable.data">
+          <td><a nz-button nzType="link" (click)="ShowDetails(data.OrderNumber)">{{ data.OrderNumber }}</a></td>
+          <td>{{ data.OrderDate | date: "medium" }}</td>
+          <td>{{ data.DueDate | date: "medium" }}</td>
+          <td>{{ data.Status }}</td>
+          <td>{{ data.OrderCost }}</td>
+          <td>{{ data.AssigndTo }}</td>
+          <td><a nz-button nzType="link" (click)="ShowDetails(data.OrderNumber)">Details</a></td>
+          <td><a nz-button nzType="link">Pay</a></td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

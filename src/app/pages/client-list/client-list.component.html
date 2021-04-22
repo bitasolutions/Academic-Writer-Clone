@@ -1,0 +1,66 @@
+<div class="w3-container">
+  <div class="pendingOrders">
+    <ejs-grid
+      #grid
+      [dataSource]="listOfData"
+      [allowPaging]="true"
+      [allowSorting]="true"
+      [searchSettings]="searchOptions"
+      [toolbar]="toolbar"
+      [pageSettings]="pageSettings"
+    >
+      <e-columns>
+        <e-column
+          field="id"
+          headerText="Id"
+          width="100"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="firstName"
+          headerText="First Name"
+          width="120"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="lastName"
+          headerText="Last Name"
+          width="200"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="username"
+          headerText="user name"
+          width="200"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="email"
+          headerText="Email"
+          width="200"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="country"
+          headerText="country"
+          width="150"
+          [customAttributes]="customAttributes"
+        ></e-column>
+        <e-column
+          field="contact1"
+          headerText="Contact1"
+          width="200"
+          [customAttributes]="customAttributes"
+        ></e-column>
+
+        <e-column
+          field="contact2"
+          headerText="Contact2"
+          width="150"
+          textAlign="Right"
+          [customAttributes]="customAttributes"
+        ></e-column>
+      </e-columns>
+    </ejs-grid>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="tile-title tit Orders">
+  <h3>Orders Summary</h3>
+  <label class="time">{{ date }}</label>
+</div>
+<div class="w3-container">
+  <div class="summary">
+    <label>Total Orders: {{ clientOrdersService.totalOrders }}</label>
+    <label>Pending Orders: {{ clientOrdersService.totalPending }}</label>
+    <label>Completed Orders: {{ clientOrdersService.totalCompeleted }}</label>
+  </div>
+  <div class="w3-row">
+    <nz-table #middleTable nzSize="middle" [nzData]="clientOrdersService.AllOrdersList">
+      <thead>
+        <tr>
+          <th style="width: 150px;">Order No</th>
+          <th class="w3-hide-small;" style="width: 250px;">Order Date</th>
+          <th class="w3-hide-small;w3-hide-medium;" style="width: 250px;">DeadLine</th>
+          <th class="w3-hide-small;" style="width: 200px;">Status</th>
+          <th class="w3-hide-small;w3-hide-medium;" style="width: 150px;">Cost</th>
+          <th>IsAssigned?</th>
+          <th>...</th>
+          <th>...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of middleTable.data">
+          <td><a nz-button nzType="link" (click)="ShowDetails(data.OrderNumber)">{{ data.OrderNumber }}</a></td>
+          <td>{{ data.OrderDate | date: "medium" }}</td>
+          <td class="w3-hide-small;">{{ data.DueDate | date: "medium" }}</td>
+          <td class="w3-hide-small;w3-hide-medium;">{{ data.status }}</td>
+          <td class="w3-hide-small;">{{ data.OrderCost }}</td>
+          <td class="w3-hide-small;w3-hide-medium;">{{ data.AssigndTo }}</td>
+          <td><a nz-button nzType="link" (click)="ShowDetails(data.OrderNumber)">Details</a></td>
+          <td><a nz-button nzType="link">Pay</a></td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

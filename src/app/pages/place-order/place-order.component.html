@@ -1,0 +1,563 @@
+<div class="tile" style="margin-top: 80px">
+  <div class="w3-row-padding">
+    <div class="w3-col">
+      <form
+        #order="ngForm"
+        spellcheck="false"
+        autocomplete="off"
+        (submit)="order.form.valid && OnSubmit(order)"
+        [appMustMatch]="['Password', 'confirmPassword']"
+        novalidate
+      >
+        <input
+          hidden
+          name="orderDate"
+          #orderDate="ngModel"
+          [(ngModel)]="orderService.formData.orderDate"
+        />
+        <section>
+          <h1>PLACE ORDER</h1>
+          <p>
+            <b> Note: Required fields are followed by</b>
+            <strong style="color: red"> &nbsp;* </strong>
+          </p>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <label for="topic">
+                  <span>TOPIC:</span>
+                  <strong style="color: red"> &nbsp;* </strong>
+                </label>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-textbox
+                  cssClass="e-outline e-success"
+                  autocomplete="off"
+                  placeholder="Please enter your topic"
+                  floatLabelType="Auto"
+                  name="title"
+                  #title="ngModel"
+                  [(ngModel)]="orderService.formData.title"
+                ></ejs-textbox>
+                <div
+                  *ngIf="order.submitted && title.invalid"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="title.errors.required">
+                    Order Title is Required Field
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>SUBJECT AREA: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-dropdownlist
+                  name="subJectArea"
+                  #subJectArea="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.subJectArea"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.subjectData"
+                  [(value)]="SubJectValue"
+                  placeholder="Please select Subject.."
+                  [fields]="fieldsSubject"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>TYPE OF DOCUMENT: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-dropdownlist
+                  name="typeOfDocument"
+                  #typeOfDocument="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.typeOfDocument"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.documentData"
+                  [(value)]="DocumentValue"
+                  placeholder="Please select Subject.."
+                  [fields]="fieldsDocument"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>NUMBER OF PAGES/WORDS: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-dropdownlist
+                  name="numberOfWords"
+                  #numberOfWords="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.numberOfWords"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.NumberOfWordsData"
+                  [(value)]="NumberOfWordsValue"
+                  placeholder="Please select Number Of Words.."
+                  [fields]="fieldsNumberOfWords"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>SPACING & DISCIPLINES: </span>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-checkbox
+                  #checkbox
+                  label="DOUBLE SPACING"
+                  [checked]="clientService.formDetailsData.spacing"
+                  name="spacing"
+                  #spacing="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.spacing"
+                  (ngModelChange)="
+                  SwitchToTechnical(
+                    clientService.formDetailsData.urgency,
+                    clientService.formDetailsData.academicLevel,clientService.formDetailsData.spacing
+                  )
+                "
+                ></ejs-checkbox>
+                &nbsp; &nbsp;
+                <ejs-checkbox
+                  #checkbox
+                  label="TECHNICAL"
+                  [checked]="clientService.formDetailsData.discipline"
+                  name="discipline"
+                  #discipline="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.discipline"
+                  (ngModelChange)="
+                    SwitchToTechnical(
+                      clientService.formDetailsData.urgency,
+                      clientService.formDetailsData.academicLevel,clientService.formDetailsData.spacing
+                    )
+                  "
+                ></ejs-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>URGENCY: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-dropdownlist
+                  name="urgency"
+                  #urgency="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.urgency"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.UrgencyData"
+                  [(value)]="UrgencyValue"
+                  placeholder="Please select Urgency.."
+                  [fields]="fieldsUrgency"
+                  [popupHeight]="height"
+                  (ngModelChange)="
+                    SwitchToTechnical(
+                      clientService.formDetailsData.urgency,
+                      clientService.formDetailsData.academicLevel,clientService.formDetailsData.spacing
+                    )
+                  "
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>ACADEMIC LEVEL: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-dropdownlist
+                  name="academicLevel"
+                  #academicLevel="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.academicLevel"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.AcademicLevelData"
+                  [(value)]="AcademicLevelValue"
+                  placeholder="Please select Academic Level.."
+                  [fields]="fieldsAcademicLevel"
+                  [popupHeight]="height"
+                  (ngModelChange)="
+                    SwitchToTechnical(
+                      clientService.formDetailsData.urgency,
+                      clientService.formDetailsData.academicLevel,clientService.formDetailsData.spacing
+                    )
+                  "
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <label for="topic">
+                  <span>NUMBER OF REFERENCES:</span>
+                  <strong style="color: red"> &nbsp;* </strong>
+                </label>
+              </div>
+              <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8">
+                <ejs-numerictextbox
+                  cssClass="e-outline e-success"
+                  autocomplete="off"
+                  placeholder="Please enter number of references"
+                  floatLabelType="Auto"
+                  name="noOfReferences"
+                  #noOfReferences="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.noOfReferences"
+                  min="0"
+                ></ejs-numerictextbox>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>STYLE: </span>
+                <strong style="color: red"> &nbsp;* </strong>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <ejs-dropdownlist
+                  name="style"
+                  #style="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.style"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.StyleData"
+                  [(value)]="StyleValue"
+                  placeholder="Please select Style.."
+                  [fields]="fieldsStyle"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>CURRENCY: </span>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <ejs-dropdownlist
+                  name="currency"
+                  #currency="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.currency"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.CurrencyData"
+                  [(value)]="CurrencyValue"
+                  placeholder="Please select Currency.."
+                  [fields]="fieldsCurrency"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>TOTAL: </span>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <input
+                  class="output"
+                  name="orderCost"
+                  #orderCost="ngModel"
+                  [(ngModel)]="orderService.formData.orderCost"
+                  value="{{ clientService.formDetailsData.currency }} {{
+                    orderService.formData.orderCost
+                  }}"
+                  readonly
+                />
+                &nbsp; &nbsp;
+                <button
+                  ejs-button
+                  cssClass="e-outline e-success"
+                  [isPrimary]="true"
+                  (click)="
+                    SwitchToTechnical(
+                      clientService.formDetailsData.urgency,
+                      clientService.formDetailsData.academicLevel,clientService.formDetailsData.spacing
+                    )
+                  "
+                >
+                  Charges
+                </button>
+              </div>
+            </div>
+          </div>
+          <p>
+            <b
+              ><i
+                >KINDLY SELECT "TYPE OF DOCUMENT","URGENCY" AND "ACADEMIC LEVEL"
+                ACCORDINGLY
+              </i></b
+            >
+            <br />
+          </p>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4">
+                <span>PREFERED LANGUAGE: </span>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                <ejs-dropdownlist
+                  name="preferredLanguage"
+                  #preferredLanguage="ngModel"
+                  [(ngModel)]="clientService.formDetailsData.preferredLanguage"
+                  cssClass="e-outline e-success"
+                  [dataSource]="dynamicDropDownService.LanguageData"
+                  [(value)]="LanguageValue"
+                  placeholder="Please select Prefered language.."
+                  [fields]="fieldsLanguage"
+                  [popupHeight]="height"
+                >
+                </ejs-dropdownlist>
+              </div>
+            </div>
+          </div>
+          <div class="w3-row">
+            <div>
+              <label for="URGENCY"
+                >ORDER DESCRIPTION:
+                <strong style="color: red"> &nbsp;* </strong>(TYPE YOUR
+                INSTRUCTIONS HERE):</label
+              >
+            </div>
+            <div class="multiline-row">
+              <ejs-textbox
+                #default
+                name="note"
+                #note="ngModel"
+                [(ngModel)]="clientService.formDetailsData.note"
+                rows="3"
+                placeholder="Type your instructions here..."
+                floatLabelType="Auto"
+                [multiline]="true"
+                cssClass="e-outline e-success"
+              ></ejs-textbox>
+            </div>
+          </div>
+        </section>
+        <div *ngIf="!clientService.isLoggedIn" class="w3-row">
+          <div class="SignUpForm">
+            <div class="w3-row">
+              <div class="w3-row-padding">
+                <div>
+                  <h3><i>Sign up details</i></h3>
+                </div>
+                <div class="w3-half">
+                  <label for="firstname"> <span>First Name:</span> </label>
+                  <input
+                    nz-input
+                    name="firstName"
+                    [(ngModel)]="clientService.userData.firstName"
+                    #firstName="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && firstName.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && firstName.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="firstName.errors.required">
+                      First Name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="lastname"> <span>Last Name:</span> </label>
+                  <input
+                    nz-input
+                    name="lastName"
+                    [(ngModel)]="clientService.userData.lastName"
+                    #lastName="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && lastName.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && lastName.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="lastName.errors.required">
+                      Last Name is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w3-row-padding">
+                <div class="w3-half">
+                  <label for="email"> <span>Email:</span> </label>
+                  <input
+                    type="email"
+                    nz-input
+                    name="email"
+                    [(ngModel)]="clientService.userData.email"
+                    #email="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && email.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && email.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="email.errors.required">
+                      Kindly Enter Valid Email.
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="username"> <span>Username:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="username"
+                    [(ngModel)]="clientService.userData.username"
+                    #username="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && username.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && username.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="username.errors.required">
+                      Username is Required.
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="password"> <span>Choose Password:</span> </label>
+                  <input
+                    type="password"
+                    nz-input
+                    name="password"
+                    [(ngModel)]="clientService.userData.password"
+                    #password="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && password.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && password.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="password.errors.required">
+                      Password is Required.
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="confirmpassword">
+                    <span>Re-Enter Password:</span>
+                  </label>
+                  <input
+                    type="password"
+                    nz-input
+                    name="confirmPassword"
+                    [(ngModel)]="clientService.userData.confirmPassword"
+                    #confirmPassword="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && confirmPassword.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && confirmPassword.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="confirmPassword.errors.required">
+                      Enter Confirm Password.
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="contact1"> <span>Contact Phone #1:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="contact1"
+                    [(ngModel)]="clientService.userData.contact1"
+                    #contact1="ngModel"
+                    [ngClass]="{
+                      'is-invalid': order.submitted && contact1.invalid
+                    }"
+                    required
+                  />
+                  <div
+                    *ngIf="order.submitted && contact1.invalid"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="contact1.errors.required">
+                      Kindly Enter Valid Contact.
+                    </div>
+                  </div>
+                </div>
+                <div class="w3-half">
+                  <label for="contact2"> <span>Contact Phone #2:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="contact2"
+                    [(ngModel)]="clientService.userData.contact2"
+                    #contact2="ngModel"
+                  />
+                </div>
+                <div class="w3-half">
+                  <label for="country"> <span>Country:</span> </label>
+                  <input
+                    type="text"
+                    nz-input
+                    name="country"
+                    [(ngModel)]="clientService.userData.country"
+                    #country="ngModel"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w3-row-padding">
+          <div class="w3-left">
+            <p style="margin: 10px">
+              <button class="w3-btn w3-round w3-red w3-hover-purple">
+                SUBMIT ORDER
+              </button>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

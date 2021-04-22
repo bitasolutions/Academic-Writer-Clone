@@ -1,0 +1,190 @@
+<div class="w3-container" style="margin-top: 100px; margin-left: -50px">
+  <div class="w3-row">
+    <div class="w3-twothird details">
+      <nz-list nzBordered>
+        <div class="tile-title tit">
+          <h3 style="margin-left: 40px; margin-top: 10px">
+            Orders Details &nbsp;
+            <strong style="color: rgb(77, 12, 77)"
+              >([{{ ordernumber }}])</strong
+            >
+          </h3>
+        </div>
+        <div [className]="classes.root">
+          <ly-paper>
+            <ly-list style="padding-left: 15px">
+              <button ly-list-item>
+                <span ly-line class="lytitle">Title:</span>
+                <span ly-line class="lyDetails">{{
+                  orderDetails.Title
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Subject Area:</span>
+                <span ly-line class="lyDetails">{{
+                  orderDetails.SubJectArea
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Document Type:</span>
+                <span ly-line class="lyDetails">{{
+                  orderDetails.TypeOfDocument
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle"
+                  >Due Date: ({{ orderDetails.Status }})</span
+                >
+                <span ly-line class="lyDetails">{{
+                  orderDetails.DueDate | date: "medium"
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Acedemic Level:</span>
+                <span ly-line class="lyDetails">{{
+                  orderDetails.AcademicLevel
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Pages:</span>
+                <span ly-line class="lyDetails">{{
+                  orderDetails.NumberOfWords
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Spacing:</span>
+                <span ly-line class="lyDetails">{{ orderDetails.Spaces }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle"
+                  >Cost: ({{ orderDetails.Paid }})</span
+                >
+                <span ly-line class="lyDetails">{{
+                  orderDetails.OrderCost
+                }}</span>
+              </button>
+              <button ly-list-item>
+                <span ly-line class="lytitle">Order Details (Note):</span>
+                <label ly-line class="lyDetails">{{ orderDetails.Note }}</label>
+              </button>
+            </ly-list>
+          </ly-paper>
+        </div>
+      </nz-list>
+    </div>
+    <div class="w3-quarter">
+      <nz-list nzBordered>
+        <div class="col-lg-12 content-wrapper" style="height: 350px">
+          <h5 style="margin-left: 10px">
+            Client &nbsp;
+            <strong style="color: rgb(77, 12, 77)">
+              {{ clientDetails.firstName }}
+              {{ clientDetails.lastName }}</strong
+            >
+          </h5>
+          <h5 style="margin-left: 10px">
+            Contact &nbsp;
+            <strong style="color: rgb(77, 12, 77)">
+              {{ clientDetails.contact1 }}</strong
+            >
+          </h5>
+          <h5 style="margin-left: 10px">
+            Email &nbsp;
+            <strong style="color: rgb(77, 12, 77)">
+              {{ clientDetails.email }}</strong
+            >
+          </h5>
+          <h5 style="margin-left: 10px">
+            Order Cost &nbsp;
+            <strong style="color: rgb(77, 12, 77)">
+              {{ orderDetails.OrderCost }}</strong
+            >
+          </h5>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <label>Set Order Status</label>
+              <ejs-dropdownlist
+                #sample
+                [dataSource]="xdata"
+                [value]="value"
+                [fields]="fields"
+                [popupHeight]="height"
+                #orderStatus="ngModel"
+                name="orderStatus"
+                [(ngModel)]="clientorderService.payment.orderStatus"
+              ></ejs-dropdownlist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="w3-left checkbox">
+              <ejs-checkbox
+                #checkbox
+                label="Is Paid"
+                [checked]="isPaid"
+                [(ngModel)]="isPaid"
+                (ngModelChange)="SwitchIsPaid()"
+                [disabled]="enableControls"
+              ></ejs-checkbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <ejs-textbox
+                placeholder="Paid Via / Reject Reason"
+                floatLabelType="Auto"
+                #paidVia="ngModel"
+                name="paidVia"
+                [(ngModel)]="clientorderService.payment.paidVia"
+                [disabled]="enableControls"
+                style="text-transform: uppercase"
+                spellcheck="false"
+                autocomplete="off"
+              ></ejs-textbox>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs- col-sm-6 col-lg-6 col-md-6">
+              <label>Pay Date:</label>
+              <ejs-datepicker
+                [value]="date"
+                [format]="format"
+                #paidDate="ngModel"
+                name="paidDate"
+                [(ngModel)]="clientorderService.payment.paidDate"
+                [disabled]="enableControls"
+              ></ejs-datepicker>
+            </div>
+            <div class="col-xs- col-sm-6 col-lg-6 col-md-6">
+              <label>Complete Date:</label>
+              <ejs-datepicker
+                [value]="today"
+                [format]="format"
+              ></ejs-datepicker>
+            </div>
+          </div>
+          <div class="flagbtn">
+            <div id="icon" class="e-btn-group">
+              <button ejs-button [disabled]="enableControls" (click)="IsPaid()">
+                Flag as Paid
+              </button>
+              <button
+                ejs-button
+                (click)="SetOrderStatus(clientorderService.payment.orderStatus)"
+              >
+                Set Status
+              </button>
+
+              <button
+                ejs-button
+                [routerLink]="['/backend/OrdersList']"
+                routerLinkActive="router-link-active"
+              >
+                Orders
+              </button>
+            </div>
+          </div>
+        </div>
+      </nz-list>
+    </div>
+  </div>
+</div>

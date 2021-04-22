@@ -1,0 +1,47 @@
+<header class="navbar">
+  <div class="container">
+    <div >
+      <div class="contact">
+        <label class="tel"><i class="fa fa-phone"></i> +1 (360) 367-4234 </label>
+        <a class="whatsApp"  href="https://web.whatsapp.com/send?phone=13603674234&amp;text=Hey, I need some support"
+        target="_blank" >  <i nz-icon nzType="whats-app" nzTheme="outline"></i> </a>
+      </div>
+      <nz-back-top [nzTemplate]="tpl" [nzVisibilityHeight]="100">
+        <ng-template #tpl>
+          <div class="ant-back-top-inner">Top</div>
+        </ng-template>
+      </nz-back-top>
+      <h3 class="writerLogo">Academic writer.com</h3>
+    </div>
+    <nav>
+      <div class="menu">
+        <button style="text-transform: uppercase" *ngIf="clientService.isLoggedIn">
+          Welcom, {{ clientService.registeredUser.role }}|
+          {{ clientService.registeredUser.Username }}| email:
+          {{ clientService.registeredUser.email }}
+        </button>
+      </div>
+      <ul *ngIf="
+          clientService.registeredUser.role === 'guest' ||
+          clientService.registeredUser.role === 'role'
+        ">
+        <li><a [routerLink]="['/Register']">HOME</a></li>
+        <li><a [routerLink]="['/Pricing']">PRICING</a></li>
+        <li><a [routerLink]="['/PlaceOrder']">ORDER NOW</a></li>
+        <li *ngIf="clientService.isLoggedIn">
+          <a (click)="onLogout()">LOGOUT</a>
+        </li>
+        <li *ngIf="!clientService.isLoggedIn">
+          <a [routerLink]="['/Login']">LOGIN</a>
+        </li>
+        <li *ngIf="!clientService.isLoggedIn">
+          <a [routerLink]="['/Register']">REGISTER</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="inner-content">
+  <router-outlet></router-outlet>
+  <ngx-ui-loader></ngx-ui-loader>
+</div>

@@ -1,0 +1,19 @@
+.e-grid .e-headercell.customcss {
+  height: 30px !important;
+  background-color: #2382c3;
+  color: white;
+  font-family: inherit;
+  font-size: 20px !important;
+  padding-bottom: 7px;
+}
+.e-grid .e-rowcell.customcss {
+  font-size: 13px !important;
+  color: black !important;
+}
+.pendingOrders {
+  margin-top: 80px !important;
+}
+.menu-control {
+  margin-left: 15px !important;
+}
+

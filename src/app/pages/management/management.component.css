@@ -1,0 +1,14 @@
+[nz-menu] {
+  width: 200px;
+}
+
+nz-menu {
+  font-family: "Muli", sans-serif;
+  font-size: 11px;
+}
+.router {
+  margin-top: -100px;
+  padding-left: 15px;
+  min-width: 75vw;
+  place-content: flex-end center;
+}

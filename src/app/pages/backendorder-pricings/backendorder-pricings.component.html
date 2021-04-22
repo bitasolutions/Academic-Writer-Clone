@@ -1,0 +1,221 @@
+<div class="w3-container">
+  <div class="pendingOrders">
+    <div class="control-section">
+      <ejs-grid
+        [dataSource]="data"
+        allowPaging="true"
+        [pageSettings]="pageSettings"
+        [editSettings]="editSettings"
+        [toolbar]="toolbar"
+        (actionBegin)="actionBegin($event)"
+        (actionComplete)="actionComplete($event)"
+      >
+        <e-columns>
+          <e-column
+            field="id"
+            headerText="ID"
+            width="50"
+            textAlign="Right"
+            isPrimaryKey="true"
+            [validationRules]="orderidrules"
+          ></e-column>
+          <e-column
+            field="Urgency"
+            headerText="Urgency"
+            width="120"
+            [validationRules]="requiredrules"
+          ></e-column>
+          <e-column
+            field="Disciplines"
+            headerText="Disciplines"
+            width="120"
+            textAlign="left"
+            [validationRules]="requiredrules"
+          ></e-column>
+          <e-column
+            field="HighSchool"
+            headerText="HighSchool"
+            width="130"
+            textAlign="Right"
+            editType="numericedit"
+            [validationRules]="numberRequiredRules"
+          ></e-column>
+          <e-column
+            field="UnderGraduate"
+            headerText="UnderGraduate"
+            width="130"
+            textAlign="Right"
+            editType="numericedit"
+            [validationRules]="numberRequiredRules"
+          ></e-column>
+          <e-column
+            field="Graduate"
+            headerText="Graduate"
+            width="130"
+            textAlign="Right"
+            editType="numericedit"
+            [validationRules]="numberRequiredRules"
+          ></e-column>
+          <e-column
+            field="Phd"
+            headerText="Phd"
+            width="130"
+            textAlign="Right"
+            editType="numericedit"
+            [validationRules]="numberRequiredRules"
+          ></e-column>
+        </e-columns>
+        <ng-template #editSettingsTemplate let-data>
+          <div ngForm #priceForm="ngForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div
+                  class="e-float-input e-control-wrapper"
+                  [ngClass]="{
+                    'e-error': id.invalid && (id.dirty || id.touched)
+                  }"
+                >
+                  <input
+                    [(ngModel)]="orderData.ID"
+                    required
+                    id="ID"
+                    name="ID"
+                    type="number"
+                    [attr.disabled]="!data.isAdd ? '' : 0"
+                    #id="ngModel"
+                    [value]="0"
+                    [disabled]="true"
+                  />
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text e-label-top" for="id">ID</label>
+                </div>
+                <div
+                  id="idError"
+                  *ngIf="id.invalid && (id.dirty || id.touched)"
+                >
+                  <label class="e-error" id="id-info" style="display: block"
+                    >*ID is required</label
+                  >
+                </div>
+              </div>
+              <div class="form-group col-md-12">
+                <div
+                  class="e-float-input e-control-wrapper"
+                  [ngClass]="{
+                    'e-error':
+                    Urgency.invalid && (Urgency.dirty || Urgency.touched)
+                  }"
+                >
+                  <input
+                    [(ngModel)]="orderData.Urgency"
+                    required
+                    id="Urgency"
+                    name="Urgency"
+                    type="text"
+                    #Urgency="ngModel"
+                    autocomplete="off"
+                  />
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text e-label-top" for="Urgency"
+                    >Urgency</label
+                  >
+                </div>
+                <div
+                  id="UrgencyError"
+                  *ngIf="Urgency.invalid && (Urgency.dirty || Urgency.touched)"
+                >
+                  <label
+                    class="e-error"
+                    id="Urgency-info"
+                    style="display: block"
+                    >*Urgency is required</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <div
+                  class="e-float-input e-control-wrapper"
+                  [ngClass]="{
+                    'e-error':
+                    Disciplines.invalid &&
+                      (Disciplines.dirty || Disciplines.touched)
+                  }"
+                >
+                  <input
+                    [(ngModel)]="orderData.Disciplines"
+                    required
+                    id="Disciplines"
+                    name="Disciplines"
+                    type="text"
+                    #Disciplines="ngModel"
+                    autocomplete="off"
+                  />
+                  <span class="e-float-line"></span>
+                  <label class="e-float-text e-label-top" for="Disciplines"
+                    >Disciplines</label
+                  >
+                </div>
+                <div
+                  id="DisciplinesError"
+                  *ngIf="
+                  Disciplines.invalid &&
+                    (Disciplines.dirty || Disciplines.touched)
+                  "
+                >
+                  <label
+                    class="e-error"
+                    id="Disciplines-info"
+                    style="display: block"
+                    >*disciplines is required</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <ejs-numerictextbox
+                  [(ngModel)]="orderData.HighSchool"
+                  name="HighSchool"
+                  id="HighSchool"
+                  placeholder="HighSchool"
+                  floatLabelType="Always"
+                ></ejs-numerictextbox>
+              </div>
+              <div class="form-group col-md-6">
+                <ejs-numerictextbox
+                  [(ngModel)]="orderData.UnderGraduate"
+                  name="UnderGraduate"
+                  id="UnderGraduate"
+                  placeholder="UnderGraduate"
+                  floatLabelType="Always"
+                ></ejs-numerictextbox>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <ejs-numerictextbox
+                  [(ngModel)]="orderData.Graduate"
+                  name="Graduate"
+                  id="Graduate"
+                  placeholder="Graduate"
+                  floatLabelType="Always"
+                ></ejs-numerictextbox>
+              </div>
+              <div class="form-group col-md-6">
+                <ejs-numerictextbox
+                  [(ngModel)]="orderData.Phd"
+                  name="Phd"
+                  id="Phd"
+                  placeholder="Phd"
+                  floatLabelType="Always"
+                ></ejs-numerictextbox>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ejs-grid>
+    </div>
+  </div>
+</div>

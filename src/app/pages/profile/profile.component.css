@@ -1,0 +1,44 @@
+.profile-card {
+  margin-top: 100px;
+  padding: 10px;
+}
+header {
+  padding: 5px;
+  background-color: #f1f1f1;
+}
+footer {
+  padding: 5px;
+  background-color: #f1f1f1;
+}
+h1 {
+  font-family: inherit;
+  color: #292929;
+  font-size: 23px;
+}
+h5 {
+  font-family: inherit;
+  color: #292929;
+  font-size: 18px;
+}
+ul {
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+li {
+  display: inline;
+}
+.userProfile {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.column {
+  width: 150px !important;
+}
+.details {
+  width: 200px !important;
+}
+.SignUpForm {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}

@@ -1,0 +1,86 @@
+<div class="tile">
+  <div class="w3-container">
+    <section>
+      <h1 style="justify-content: left">pricing</h1>
+      <p>
+        Our pricing is based on the Academic Level, Urgency, Discipline, Number
+        of Pages, and Type of Paper that our customer needs. Here is an average
+        rating for Non-technical Disciplines;
+      </p>
+      <h2>Pricing for non-technical Disciplines</h2>
+      <ul>
+        <li>English</li>
+        <li>Marketing</li>
+        <li>Nursing</li>
+        <li>Psycology</li>
+        <li>Healthcare</li>
+        <li>Business Studies</li>
+        <li>Management</li>
+      </ul>
+
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Urgency</th>
+              <th class="textCenter">Phd</th>
+              <th class="textCenter">Graduate</th>
+              <th class="textCenter">UnderGraduate</th>
+              <th class="textCenter">HighSchool</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr *ngFor="let item of this.ordersService.nonTechnicalPricinglist">
+              <td>{{ item.Urgency }}</td>
+              <td class="textCenter">{{ item.Phd | currency }}</td>
+              <td class="textCenter">{{ item.Graduate | currency }}</td>
+              <td class="textCenter">{{ item.UnderGraduate | currency }}</td>
+              <td class="textCenter">{{ item.HighSchool | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 15px">
+        <h2>Pricing for Technical Disciplines</h2>
+        <ul>
+          <li>Chemistry</li>
+          <li>Information Technology</li>
+          <li>Maths</li>
+          <li>Physics</li>
+        </ul>
+
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Urgency</th>
+                <th class="textCenter">Phd</th>
+                <th class="textCenter">Graduate</th>
+                <th class="textCenter">UnderGraduate</th>
+                <th class="textCenter">HighSchool</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+              <tr *ngFor="let item of this.ordersService.technicalPricinglist">
+                <td>{{ item.Urgency }}</td>
+                <td class="textCenter">{{ item.Phd | currency }}</td>
+                <td class="textCenter">{{ item.Graduate | currency }}</td>
+                <td class="textCenter">{{ item.UnderGraduate | currency }}</td>
+                <td class="textCenter">{{ item.HighSchool | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

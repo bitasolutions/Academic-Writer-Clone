@@ -1,0 +1,51 @@
+<div class="push tile">
+  <div class="w3-container">
+    <ul
+      *ngIf="
+        clientService.isLoggedIn &&
+        clientService.registeredUser.role === 'guest'
+      "
+      nz-menu
+      nzMode="inline"
+    >
+      <li nz-submenu nzTitle="Orders Review" nzOpen>
+        <ul>
+          <li nz-menu-group nzTitle="Manage">
+            <ul>
+              <li nz-menu-item nzSelected routerLink="Manage">Orders</li>
+              <li nz-menu-item routerLink="Pending" routerLinkActive="active">
+                Pending Orders
+              </li>
+              <li nz-menu-item routerLink="NewOrder" routerLinkActive="active">
+                New Orders
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Work">
+        <ul>
+          <li nz-menu-group nzTitle="Reviews">
+            <ul>
+              <li nz-menu-item routerLink="Complete" routerLinkActive="active">
+                Completed
+              </li>
+              <li nz-menu-item routerLink="Assigned" routerLinkActive="active">Assigned</li>
+              <li nz-menu-item  routerLink="inprogress" routerLinkActive="active">In Progress</li>
+              <li nz-menu-item routerLink="Rejected" routerLinkActive="active">Rejected</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Account">
+        <ul>
+          <li nz-menu-item routerLink="Profile" routerLinkActive="active">
+            Profile
+          </li>
+          <li nz-menu-item (click)="Logout()">LogOut</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="router"><router-outlet></router-outlet></div>
+</div>

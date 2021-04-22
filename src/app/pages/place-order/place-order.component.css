@@ -1,0 +1,78 @@
+form {
+  position: static;
+  font-family: "Muli", sans-serif;
+  width: 60vw;
+  padding-left: 2vw;
+  padding-right: 5vw;
+  padding-bottom: 2vw;
+  border: 1px solid #749ae0;
+  border-radius: 1em;
+  background: #f0f0f0;
+  color: rgb(0, 0, 0);
+  z-index: -2;
+}
+h1 {
+  color: rgb(0, 0, 0);
+}
+nz-select {
+  width: 100%;
+  color: black;
+}
+nz-option {
+  color: black;
+  z-index: -2;
+}
+input nz-input {
+  width: 65%;
+  position: static;
+  z-index: 1;
+}
+label{
+  color: rgb(0, 0, 0);
+}
+select {
+  color: black;
+}
+.output {
+  border: black 1px solid;
+  background-color: rgb(219, 243, 83);
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  border: 0;
+}
+textarea {
+  color: black;
+}
+:host ::ng-deep button {
+  margin-right: 0.25em;
+}
+
+:host ::ng-deep .ui-message,
+:host ::ng-deep .ui-inputtext {
+  margin-right: 0.25em;
+}
+
+:host ::ng-deep .custom-message,
+:host ::ng-deep img {
+  align-self: center;
+  font-size: 16px;
+  margin-left: 0.5em;
+}
+/* input:required:invalid {
+  border-color: #ff2e2e;
+} */
+.is-invalid {
+  border-color: #ff2e2e;
+}
+.invalid-feedback {
+  color: #ff2e2e;
+}
+
+.SignUpForm
+{
+  font-family: "Muli", sans-serif;
+  border: 1px solid #c3d5f8;
+  padding-top: 2px;
+  padding-bottom:7px;
+}

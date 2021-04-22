@@ -1,0 +1,109 @@
+/*writer header*/
+header {
+  padding: 10px;
+}
+
+.navbar {
+  overflow: hidden;
+  background: rgb(17, 204, 204);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.navbar::after {
+  display: table;
+  clear: both;
+}
+.writerLogo {
+  font-family: "Mistral", " Muli" !important;
+  font-size: 25px !important;
+  color: #231f20 !important;
+  margin-left: -20px;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  top: 100px;
+  right: 0px;
+  margin-top: 5px;
+  margin-right: -50px;
+}
+nav li {
+  display: inline-block;
+  margin-left: 25px;
+  padding-top: 5px;
+  position: relative;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  top: 30px;
+}
+nav a:hover {
+  color: rgb(2, 88, 216);
+}
+nav a::before {
+  content: "";
+  display: block;
+  height: 5px;
+  width: 100%;
+  background: rgb(1, 23, 212);
+  position: absolute;
+  top: 0;
+  width: 0%;
+  transition: all ease-in-out 300ms;
+}
+nav a:hover::before {
+  width: 100%;
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
+}
+button {
+  margin-top: -10px;
+  margin-left: 15px;
+  margin-bottom: -10px;
+  overflow: hidden;
+  background: rgb(17, 204, 204);
+  color: white;
+  border: none;
+  font-family: inherit;
+  font-size: 12px !important;
+}
+.tel {
+  font-size: 14px !important;
+}
+:host ::ng-deep .ant-back-top {
+  bottom: 100px;
+}
+
+:host ::ng-deep .ant-back-top-inner {
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  border-radius:50%;
+  background-color: #11CCCC;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.contact{
+  display: inline;
+  display: flex;
+}
+.whatsApp{
+  margin-left: 10px;
+  margin-top: -5px;
+}
+[nz-icon] {
+  margin-right: 6px;
+  font-size: 24px;
+  color: #ffffff;
+}
